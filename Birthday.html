@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aayusha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+    margin:0;
+    font-family:"Poppins",sans-serif;
+    background: radial-gradient(#ffeafd,#ffd8ec,#fff0f7,#ffe6f2);
+    overflow:hidden;
+}
+
+/* Fireworks canvas behind everything */
+#fireworks{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+}
+
+/* Heart rain container */
+#hearts{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
+}
+
+/* Main birthday card */
+.container{
+    position:relative;
+    z-index:3;
+    text-align:center;
+    background:white;
+    padding:38px 48px;
+    border-radius:34px;
+    max-width:680px;
+    margin:60px auto;
+    box-shadow:0 30px 55px rgba(255,120,170,.25);
+    border:4px solid #ffd0e9;
+}
+
+/* Animated name */
+.name{
+    font-size:3rem;
+    font-weight:900;
+    color:#ff4f9a;
+    letter-spacing:2px;
+    animation:glow 2s infinite, bounce 2s infinite;
+}
+
+@keyframes glow{
+    0%{text-shadow:0 0 6px #ff9ac6,0 0 18px #ff6fb2;}
+    100%{text-shadow:0 0 18px #ff2f8c,0 0 34px #ff5fad;}
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+h2{
+    color:#555;
+    margin-top:5px;
+}
+
+p{
+    color:#666;
+    line-height:1.7;
+}
+
+/* Floating balloons */
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    font-size:50px;
+    animation:float 9s linear infinite;
+    opacity:.9;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-125vh);}
+}
+
+/* Cake */
+.cake{
+    margin:20px auto;
+    width:140px;
+    height:120px;
+    position:relative;
+}
+
+.cake-base{
+    width:100%;
+    height:75px;
+    background:#ffb6d9;
+    border-radius:18px;
+    position:absolute;
+    bottom:0;
+    box-shadow:inset 0 -12px 0 #ff8fc3;
+}
+
+.icing{
+    width:100%;
+    height:28px;
+    background:#fff4fa;
+    border-radius:20px;
+    position:absolute;
+    top:10px;
+}
+
+.candle{
+    width:12px;
+    height:38px;
+    background:#ffe780;
+    position:absolute;
+    top:-25px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:5px;
+}
+
+.flame{
+    width:14px;
+    height:14px;
+    background:#ffb703;
+    border-radius:50%;
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    animation:flicker .5s infinite alternate;
+}
+
+@keyframes flicker{
+    from{transform:translateX(-50%) scale(1);}
+    to{transform:translateX(-50%) scale(1.35);}
+}
+
+/* Knife cutting animation */
+.knife{
+    width:130px;
+    height:9px;
+    background:#d0d0d0;
+    position:absolute;
+    top:0;
+    right:-170px;
+    border-radius:10px;
+    transform:rotate(-20deg);
+    animation:cut 5s ease-in-out infinite;
+}
+
+@keyframes cut{
+    0%{right:-220px; top:-50px;}
+    40%{right:35px; top:25px;}
+    70%{right:35px; top:25px;}
+    100%{right:-220px; top:-50px;}
+}
+
+button{
+    padding:11px 24px;
+    border-radius:24px;
+    border:none;
+    background:#ff78b6;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 8px 16px rgba(255,120,182,.35);
+}
+
+button:hover{opacity:.92;}
+
+#extra{
+    display:none;
+    color:#ff2e6e;
+    font-weight:700;
+    margin-top:12px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+<div id="hearts"></div>
+
+<!-- balloons -->
+<div class="balloon" style="left:5%; animation-delay:0s;">🎈</div>
+<div class="balloon" style="left:20%; animation-delay:.5s;">🎈</div>
+<div class="balloon" style="left:40%; animation-delay:1s;">🎈</div>
+<div class="balloon" style="left:60%; animation-delay:1.5s;">🎈</div>
+<div class="balloon" style="left:80%; animation-delay:.3s;">🎈</div>
+
+<div class="container">
+
+    <div class="name">HAPPY BIRTHDAY AAYUSHA 🎀</div>
+
+    <h2>Wishing you the cutest day full of magic and smiles ✨</h2>
+
+    <p>
+        May your heart always be full of happiness and sweet moments.  
+        You make the world brighter just by being in it 💗
+    </p>
+
+    <!-- Cake -->
+    <div class="cake">
+        <div class="knife"></div>
+        <div class="icing"></div>
+        <div class="cake-base"></div>
+        <div class="candle"></div>
+        <div class="flame"></div>
+    </div>
+
+    <button onclick="showMessage()">Click for a Surprise 💝</button>
+    <p id="extra">Lots of love and happiness to you today and always 🎂✨</p>
+</div>
+
+<script>
+function showMessage(){
+    document.getElementById("extra").style.display="block";
+    alert("Happy Birthday, Aayusha! Stay cute and happy always 💖");
+}
+
+/* -------- Fireworks -------- */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+let w,h;
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+}
+window.onresize=resize; resize();
+
+let particles=[];
+function Firework(){
+  this.x=Math.random()*w;
+  this.y=h;
+  this.targetY=Math.random()*h/2;
+  this.color=`hsl(${Math.random()*360},100%,60%)`;
+  this.radius=2;
+  this.speed=3+Math.random()*2;
+  this.exploded=false;
+  this.child=[];
+}
+Firework.prototype.update=function(){
+  if(!this.exploded){
+    this.y-=this.speed;
+    if(this.y<=this.targetY){
+      this.exploded=true;
+      for(let i=0;i<30;i++){
+        this.child.push({
+          x:this.x,
+          y:this.y,
+          angle:Math.random()*Math.PI*2,
+          speed:Math.random()*4+1,
+          alpha:1
+        });
+      }
+    }
+  }else{
+    this.child.forEach(c=>{
+      c.x+=Math.cos(c.angle)*c.speed;
+      c.y+=Math.sin(c.angle)*c.speed;
+      c.alpha-=0.02;
+    });
+  }
+};
+Firework.prototype.draw=function(){
+  if(!this.exploded){
+    ctx.fillStyle=this.color;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+    ctx.fill();
+  }else{
+    this.child.forEach(c=>{
+      ctx.fillStyle=`rgba(255,150,200,${c.alpha})`;
+      ctx.beginPath();
+      ctx.arc(c.x,c.y,2,0,Math.PI*2);
+      ctx.fill();
+    });
+  }
+};
+
+function loop(){
+  ctx.clearRect(0,0,w,h);
+  if(Math.random()<0.05) particles.push(new Firework());
+  particles.forEach((p,i)=>{
+    p.update();
+    p.draw();
+    if(p.exploded && p.child.every(c=>c.alpha<=0)) particles.splice(i,1);
+  });
+  requestAnimationFrame(loop);
+}
+loop();
+
+/* -------- Heart rain -------- */
+const heartContainer=document.getElementById("hearts");
+
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.innerText="💗";
+  heart.style.position="absolute";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(18+Math.random()*26)+"px";
+  heart.style.animation="drop 4.5s linear forwards";
+  heartContainer.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),5000);
+}
+
+setInterval(createHeart,200);
+
+const style=document.createElement("style");
+style.innerHTML=`
+@keyframes drop{
+  0%{transform:translateY(-10vh) rotate(0deg); opacity:1;}
+  100%{transform:translateY(110vh) rotate(360deg); opacity:0;}
+}`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
